@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import '../css/Login.css';
 
 function Login() {
@@ -72,6 +72,10 @@ function Login() {
             Entrar
         </button>
       </form>
+      <br />
+      <NavLink to="/register" className="btn btn-primary">
+          Cadastrar
+      </NavLink>
     </div>
   );
 }
