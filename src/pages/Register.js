@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../css/Login.css';
 
-function Login() {
+function Register() {
+  const [dataBaseMock, setDataBaseMock] = useState([]);
+  const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
 
-  // Busco os dados do BD mockado no localStorage;
-  const usersFromDataBaseMocked = JSON.parse(localStorage.getItem('newUsers'));
-
-  // Instacia o useNavigate(como consta na ducumentação)
+  // instacio o navigate
   const navigate = useNavigate();
+
+  // Adiciona um array para guardar os novos usuários simulando uma API.
+  localStorage.setItem('newUsers', JSON.stringify(dataBaseMock));
   
   useEffect(() => {
     const validateInputs = () => {
@@ -21,27 +22,44 @@ function Login() {
             setIsDisabled(true);
         } else if (!password || password.length < 6) {
             setIsDisabled(true);
+        } else if (userName.length < 4) {
+            setIsDisabled(true);
         } else {
             setIsDisabled(false);
         }
     }
     validateInputs();
-  }, [email, password]);
+  }, [email, password, userName]);
 
-  const verifyUserExist = (e) => {
-    e.preventDefault();
-    usersFromDataBaseMocked.forEach((user) => {
-        if (user['email'] === email && user['password'] === password) {
-            navigate('/home');
-        } 
-        return <div>Dados incorretos ou usuário não cadastrado</div>
-        
-    });
+  const doRegister = (e) => {
+      e.preventDefault();
+      const object = {
+          userName,
+          email,
+          password,
+      }
+      setDataBaseMock([...dataBaseMock, object]);
+      localStorage.setItem('newUsers', JSON.stringify(dataBaseMock));
+
+    // Criei esse TimeOut para simular a ação de adicionar no BD e também porque o navigate estava indo mais rápido que o setItem do localStorage
+    setTimeout(() => {
+      navigate('/');
+    }, 2000);
   }
 
   return (
     <div className="container">
       <form>
+        <div className="mb-3">
+          <label htmlFor="userName" class="form-label">Nome de usuário</label>
+          <input
+            type="text"
+            className="form-control"
+            id="userName"
+            name="userName-input"
+            onChange={ (e) => setUserName(e.target.value) }
+          />
+        </div>
         <div className="mb-3">
           <label htmlFor="email" class="form-label">Email</label>
           <input
@@ -67,13 +85,13 @@ function Login() {
             type="submit"
             className="btn btn-success"
             disabled={ isDisabled }
-            onClick={ (e) => verifyUserExist(e) }
+            onClick={ (e) => doRegister(e) }
           >
-            Entrar
+            Registrar
         </button>
       </form>
     </div>
   );
 }
 
-export default Login;
+export default Register;
