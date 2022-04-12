@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,43 +15,43 @@ function AddPoints() {
 
   useEffect(() => {
     if (!longitude || !latitude) {
-        setIsDisabled(true);
+      setIsDisabled(true);
     } else {
-        setIsDisabled(false);
+      setIsDisabled(false);
     }
   }, [longitude, latitude]);
 
   const sendPositions = (e) => {
     e.preventDefault();
     const newPoints = {
-        type: "Feature",
-        geometry: {
-            type: "Point",
-            coordinates: [+longitude, +latitude]
-        },
-        properties: {
-            pointName: positionName,
-        }
-    }
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [+longitude, +latitude],
+      },
+      properties: {
+        pointName: positionName,
+      },
+    };
     setGeoJSON([...geoJSON, newPoints]);
-    let { features } = JSON.parse(localStorage.getItem('featureCollection'));
+    const { features } = JSON.parse(localStorage.getItem('featureCollection'));
     features.push(newPoints);
-    localStorage.setItem('featureCollection', JSON.stringify({ type: 'FeatureCollection', features}));
+    localStorage.setItem('featureCollection', JSON.stringify({ type: 'FeatureCollection', features }));
     setIsMapDisabled(false);
-  }
+  };
 
   return (
     <div className="container">
       <form>
         <div className="mb-3">
-          <label htmlFor="longitude" class="form-label">Longitude</label>
+          <label htmlFor="longitude" className="form-label">Longitude</label>
           <input
             type="text"
             className="form-control"
             id="longitude"
             name="longitude-input"
             placeholder="Insira uma longitude"
-            onChange={ (e) => setLongitude(e.target.value) }
+            onChange={(e) => setLongitude(e.target.value)}
           />
         </div>
         <div className="mb-3">
@@ -61,7 +62,7 @@ function AddPoints() {
             id="latitude"
             name="latitude-input"
             placeholder="Insira uma latitude"
-            onChange={ (e) => setLatitude(e.target.value) }
+            onChange={(e) => setLatitude(e.target.value)}
           />
         </div>
         <div className="mb-3">
@@ -72,24 +73,24 @@ function AddPoints() {
             id="name-position"
             name="position"
             placeholder="Insira um nome para a posição"
-            onChange={ (e) => setPositionName(e.target.value) }
+            onChange={(e) => setPositionName(e.target.value)}
           />
         </div>
         <button
-            type="submit"
-            className="btn btn-success"
-            disabled={ isDisabled }
-            onClick={ (e) => sendPositions(e) }
-          >
-            Cadastrar posição
+          type="submit"
+          className="btn btn-success"
+          disabled={isDisabled}
+          onClick={(e) => sendPositions(e)}
+        >
+          Cadastrar posição
         </button>
         <button
-            type="submit"
-            className="btn btn-primary"
-            disabled={ isMapDisabled }
-            onClick={ () => navigate('/home') }
-          >
-            Ver no mapa
+          type="submit"
+          className="btn btn-primary"
+          disabled={isMapDisabled}
+          onClick={() => navigate('/home')}
+        >
+          Ver no mapa
         </button>
       </form>
     </div>
