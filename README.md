@@ -12,11 +12,14 @@
 
 # Tecnologias
 
+* `HTML`;
+* `CSS`;
 * `React`;
 * `Leaflet`;
 * `React-leaflet`;
 * `Hooks`;
-* `ESlint`.
+* `ESlint`;
+* `Bootstrap`.
 
 # Experiência com o projeto
 Sem dúvidas um dos projetos mais divertidos que já fiz. Foi meu primeiro contato com o formato geoJSON e com as bibliotecas Leaflet e react-leaflet.
