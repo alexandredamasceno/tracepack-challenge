@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# Boas vindas ao repositório do projeto uMAP!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Instruções iniciais
+1. Clone o repositório
+  * `git clone https://github.com/alexandredamasceno/tracepack-frontend`
+2. Entre na pasta do repositório que você acabou de clonar:
+  * `cd tracepack`
+3. Instale as dependências
+  * `npm install`
+5. Para rodar o projeto:
+ * `npm start`
 
-## Available Scripts
+# Tecnologias
 
-In the project directory, you can run:
+* `React`;
+* `Leaflet`;
+* `React-leaflet`;
+* `Hooks`;
+* `ESlint`.
 
-### `npm start`
+# Experiência com o projeto
+Sem dúvidas um dos projetos mais divertidos que já fiz. Foi meu primeiro contato com o formato geoJSON e com as bibliotecas Leaflet e react-leaflet.
+Passei grande parte do tempo tentando entender o funcionamento das bibliotecas, busquei ajuda, além da documentação, em artigos, github e vídeos no youtube. Eu acabei simulando uma conexão com um Banco de Dados através do `LocalStorage` para facilitar na hora de rodar o projeto e também, como eu tinha um prazo e meu tempo estava apertado, achei mais sensato fazer assim.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Rotas
+- Login("/"): essa é a tela inicial da aplicação. Para logar você precisa: `email válido(exemplo@email.com` e `senha válida(string com pelo menos 6 caracteres`. O botão estará desabilitado até que você coloque os dados corretos. Caso não tenha registro você não será redirecionado para a tela principal, basta clicar em `Cadastrar`;
+- Register("register"): para se cadastrar: `userName(string com pelo menos 4 caracteres)`, `email válido(exemplo@email.com` e `senha válida(string com pelo menos 6 caracteres`. Clique em `Cadastrar` e será redirecionado para a tela de `Login`;
+- Home("home"): essa é a tela principal, onde contém o mapa, o título da aplicação e dois menus(`Cadastrar Posições` e `Cadastrar Polígonos`);
+- AddPoints("addPoints"): aqui você pode adicionar as coordenadas da localização(longitude e latitude), assim como um nome para a posição. POde adicionar quantas quiser. Depois basta clicar em `Ver no mapa` para visualização as coordenadas no mapa.
