@@ -9,6 +9,7 @@ function AddPolygons() {
   const [geoJSON, setGeoJSON] = useState([]);
   const [coordinates, setCoordinates] = useState([]);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [isDisabledAddToGeoJson, setIsDisabledAddToGeoJson] = useState(true);
   const [isMapDisabled, setIsMapDisabled] = useState(true);
 
   // Instancia o useNavigate
@@ -26,6 +27,9 @@ function AddPolygons() {
     e.preventDefault();
     const newCoordinates = [+longitude, +latitude];
     setCoordinates([...coordinates, newCoordinates]);
+    setLongitude('');
+    setLatitude('');
+    setIsDisabledAddToGeoJson(false);
   };
 
   const setPositionsIntoGeoJson = (e) => {
@@ -47,6 +51,7 @@ function AddPolygons() {
     features.push(newPolygons);
     localStorage.setItem('featureCollection', JSON.stringify({ type: 'FeatureCollection', features }));
     setIsMapDisabled(false);
+    setPositionName('');
   };
 
   return (
@@ -62,6 +67,7 @@ function AddPolygons() {
             className="form-control"
             id="longitude"
             name="longitude-input"
+            value={longitude}
             placeholder="Insira uma longitude"
             onChange={(e) => setLongitude(e.target.value)}
           />
@@ -75,6 +81,7 @@ function AddPolygons() {
             className="form-control"
             id="latitude"
             name="latitude-input"
+            value={latitude}
             placeholder="Insira uma latitude"
             onChange={(e) => setLatitude(e.target.value)}
           />
@@ -99,6 +106,7 @@ function AddPolygons() {
             className="form-control"
             id="name-position"
             name="position"
+            value={positionName}
             placeholder="Insira um nome para a posição"
             onChange={(e) => setPositionName(e.target.value)}
           />
@@ -106,7 +114,7 @@ function AddPolygons() {
         <button
           type="submit"
           className="btn btn-success"
-          disabled={isDisabled}
+          disabled={isDisabledAddToGeoJson}
           onClick={(e) => setPositionsIntoGeoJson(e)}
         >
           Cadastrar coordenada
