@@ -19,6 +19,7 @@ const greenIcon = L.icon({
 
 
 function Map() {
+  const DEFAULT = [51.508742458803326, -0.1263427734375];
   // Assim que o usuário entra na aplicação eu já preparo ambiente para guardar as features
   const featureCollection = JSON.parse(localStorage.getItem('featureCollection'));
   if (!featureCollection) {
@@ -28,34 +29,40 @@ function Map() {
     }))
   }
 
-  const DEFAULT = [51.508742458803326, -0.1263427734375];
-
   return (
     <div>
         <div>
-          <h1>uMap</h1>
-          <ul>
-            <li>
-              <NavLink to="/addPoints">Cadastrar Posições</NavLink>
-            </li>
-            <li></li>
-          </ul>
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <h1>uMAP</h1>
+              <div>
+                <ul class="btn-group">
+                  <li className="links">
+                    <NavLink to="/addPoints" className="btn btn-primary">Cadastrar Posições</NavLink>
+                  </li>
+                  <li className="links">
+                    <NavLink to="/addPolygon" className="btn btn-primary links">Cadastrar Polígonos</NavLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
         </div>
-        <MapContainer className="map" center={[51.508742458803326, -0.1263427734375]} zoom={13}>
+        <MapContainer className="map" center={DEFAULT} zoom={1.8}>
         <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {
-            featureCollection.features.map((feature) => (
-                <Marker position={[feature.geometry.coordinates[0], feature.geometry.coordinates[1]] || DEFAULT} icon={greenIcon}>
-                    <Popup>
-                      {feature.properties.pointName}
-                    </Popup>
-                </Marker>
-            ))
+          featureCollection.features.map((feature) => (
+            <Marker position={[feature.geometry.coordinates[0], feature.geometry.coordinates[1]]} icon={greenIcon}>
+              <Popup>
+                {feature.properties.pointName}
+              </Popup>
+            </Marker>
+          ))
         }
-        </MapContainer>  
+        </MapContainer> 
     </div>
   );
 }

@@ -2,3 +2,13 @@
   /* vh é a medida da altura da viewpoint do navegador. No caso, eu quero 100% da viewpoint */
   height: 100vh;
 }
+
+.links {
+  list-style-type: none;
+  margin-right: 7px;
+}
+
+.div-instruction {
+  width: 30vh;
+  margin: 30px auto;
+}
